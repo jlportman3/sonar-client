@@ -1,0 +1,170 @@
+# Account Related
+/accounts - GET, POST (list all, create)
+/accounts/:id - GET, PATCH, DELETE (get one, update, delete)
+/accounts/:id/addresses - GET, POST (list, create)
+/accounts/:id/addresses/:address_id - GET, PATCH, DELETE
+/accounts/:id/billing - GET
+/accounts/:id/billing/parameters - GET, PATCH
+/accounts/:id/services - GET, POST
+/accounts/:id/services/:service_id - GET, PATCH, DELETE
+/accounts/:id/call_logs - GET, POST
+/accounts/:id/call_logs/:log_id - GET, PATCH, DELETE
+/accounts/:id/records - GET
+/accounts/:id/ip_assignments - GET
+/accounts/:id/ip_assignments/:assignment_id - DELETE
+
+# Network Related
+/network/ipam/ip_lookup - GET (with ip parameter)
+/network/mapping - GET (get network mapping information)
+/network/provisioning/dhcp_servers - GET (list DHCP servers)
+/api/dhcp_assignments - POST (batch post DHCP assignments)
+
+# Network Sites
+/network/network_sites - GET (list all network sites)
+/network/network_sites/:id/ip_assignments - GET
+/network/network_sites/:id/inventory_items - GET
+/network_sites/:id/addresses - GET
+
+# Network Provisioning
+/network/provisioning/dhcp_servers - GET (list DHCP servers)
+/network/provisioning/inline_devices - GET (list inline devices)
+/network/provisioning/radius_groups - GET (list radius groups)
+/network/provisioning/radius_groups/:id/attributes - GET (get radius attributes)
+
+# IPAM (IP Address Management)
+/network/ipam/supernets - GET (list all supernets)
+/network/ipam/supernets/:id/subnets - GET (list subnets in supernet)
+/network/ipam/supernets/:id/subnets/:subnet_id/ip_pools - GET (list IP pools)
+
+# Inventory Related
+/inventory/manufacturers - GET (list all manufacturers)
+/inventory/models - GET (list all models)
+/inventory/models/:id/fields - GET (get fields for model, includes:
+  - id
+  - type (mac, imsi, etc)
+  - other field details
+)
+/inventory/items - GET (list all items)
+/inventory/items - POST (create items with:
+  - assignee_type (e.g., 'accounts')
+  - assignee_id
+  - model_id
+  - fields (key-value pairs)
+)
+
+# Device Management
+- Devices can have:
+  * MAC addresses
+  * IMSI numbers
+  * IP assignments
+  * Model information
+  * Customer assignments
+
+# System Related
+/system/account_statuses - GET (get all account status definitions)
+/system/services - GET (get all service definitions with pricing)
+
+# Services Related
+/accounts/:id/services - GET (list services with price_override and recurring type)
+/system/services - GET (get master service list with:
+  - id
+  - name
+  - type (recurring, etc)
+  - amount
+  - application (credit, etc)
+)
+
+# Account Status Related
+- Account can have status_id (2 = Active, 5 = Closed)
+- Account can have delinquent flag (true/false)
+
+# Search
+/search/:entity - POST (with size, page, search parameters)
+
+# Scheduling
+/scheduling/job_types - GET (list job types)
+/scheduling/jobs - GET (list jobs)
+
+# Ticketing
+/system/tickets/ticket_categories - GET (list ticket categories)
+/system/tickets/ticket_groups - GET (list ticket groups)
+/system/tickets/inbound_email_accounts - GET (list email accounts)
+/tickets - GET (list all tickets)
+/tickets/:id/ticket_comments - GET (get ticket comments)
+/tickets/:id/ticket_replies - GET (get ticket replies)
+
+# Voice
+/system/voice/dids - GET (list DIDs)
+/system/voice/rate_centers - GET (list rate centers)
+/system/voice/voice_providers - GET (list voice providers)
+
+# Financial
+/financial/taxes - GET (list taxes)
+/financial/taxes/:id/geotaxes - GET (list geotaxes)
+
+# Account Financial
+/accounts/:id/billing_parameters - GET, PATCH (get/update billing settings)
+/accounts/:id/payment_methods - GET, POST (list/create payment methods)
+/accounts/:id/invoices - GET (list invoices)
+/accounts/:id/debits - GET (list debits)
+/accounts/:id/deposits - GET (list deposits)
+/accounts/:id/discounts - GET (list discounts)
+/accounts/:id/payments - GET (list payments)
+
+# Account Contacts and Notes
+/accounts/:id/contacts - GET, POST (list/create contacts)
+/accounts/:id/notes - GET (list notes)
+
+# System Configuration
+/system/packages - GET (list packages)
+/system/custom_fields - GET (list custom fields)
+/system/account_groups - GET (list account groups)
+/system/account_types - GET (list account types)
+/system/address_types - GET (list address types)
+
+# Users and Roles
+/users - GET (list users)
+/roles - GET (list roles)
+
+# Task Management
+/system/misc/task_templates - GET (list task templates)
+/system/misc/task_templates/:id/template_tasks - GET (list template tasks)
+
+# Monitoring
+/network/monitoring/monitoring_templates - GET (list monitoring templates)
+/network/monitoring/monitoring_templates/:id/monitoring_graphs - GET (list graphs)
+/network/monitoring/monitoring_templates/:id/snmp_oids - GET (list SNMP OIDs)
+/network/monitoring/monitoring_templates/:id/snmp_oids/:oid_id/snmp_oid_thresholds - GET (list thresholds)
+
+# To Find/Verify:
+- Contracts/Agreements endpoints 
+- Reporting endpoints
+- Device management endpoints
+- User management endpoints
+- Payment/Transaction endpoints
+- Email/Communication endpoints
+- File/Document endpoints
+- Logging/Audit endpoints
+- Configuration endpoints
+- Integration endpoints
+
+# Pagination Details Found:
+- limit parameter (default 100)
+- page parameter
+- Response includes:
+  * total_pages
+  * total_count
+  * current_page
+  * data array
+
+Notes:
+- Need to verify all HTTP methods for each endpoint
+- Found query parameters:
+  * limit (default 100)
+  * page
+  * fields (for filtering)
+- Need to document request/response schemas
+- Need to document query parameters
+- Need to document pagination details
+- Need to verify authentication requirements
+- Need to check for rate limiting info

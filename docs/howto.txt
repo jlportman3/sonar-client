@@ -1,0 +1,103 @@
+Steps:
+	wispmon -> find all customer services with quantity > 1 and convert to singles.
+	wispmon -> identify all customers with multiple data services (manual process after conversion)
+Reset instance
+	 Add roles			Manual 				https://www.dropbox.com/s/jslnrp2lct61tnc/Screenshot%202018-03-12%2021.35.14.png?dl=0
+	 Add users			Manual				https://www.dropbox.com/s/lmvqd2d85e8k30n/Screenshot%202018-03-12%2021.35.52.png?dl=0
+	 Account statuses	Auto Iterate
+	 Account types.		Auto Iterate
+	 Account Groups		Auto Iterate
+	 Address Types		Manual
+	 Taxes				Manual ?
+	 system configuration	Manual			https://www.dropbox.com/s/zca4nfc0giaxply/Screenshot%202018-03-12%2021.36.30.png?dl=0
+	 outbound domains		Manual 			https://www.dropbox.com/s/dwgusqx4swnj8md/Screenshot%202018-03-12%2021.34.35.png?dl=0
+	 Billing configuration	Manual			https://www.dropbox.com/s/w7bbdxyvpasika3/Screenshot%202018-03-12%2021.37.24.png?dl=0
+	 custom fields			Manual?			https://www.dropbox.com/s/r5wpkp6j3ftufb0/Screenshot%202018-03-12%2021.37.59.png?dl=0
+	 										dropdown custom fields cannot be restored
+		
+	 Services *				From Wispmon
+	 VERIFY TAXES!!!
+	 	 
+	 radius server			Manual
+	 radius groups			Auto Iterate
+
+	 
+	 dhcp servers		MANUAL PROCESS		Iterate and check. Names do not need to match for import.
+	 inline devices		MANUAL PROCESS		Iterate and check. Names do not need to match for import.
+	 
+	 address lists		PROBABLY MANUAL PROCESS
+	 poller				MANUAL PROCESS		https://www.dropbox.com/s/9id7arbgjvj2i1a/Screenshot%202018-03-12%2021.39.19.png?dl=0
+	 Network Sites			Auto Iterate			Manually set heights via network addresses
+	 Network Site Addresses	Auto Iterate	SKIP			
+	 Super Nets				Auto Iterate
+	 Sub nets				Auto Iterate
+	 dhcp pools				Auto Iterate
+	 
+	 Validate inline devices				https://www.dropbox.com/s/bxnfht0lmfeniiu/Screenshot%202018-03-12%2021.41.00.png?dl=0 
+	 Validate dhcp servers. 				https://www.dropbox.com/s/n48eha9kpisz5sf/Screenshot%202018-03-12%2021.41.44.png?dl=0
+	  
+	 
+	 inventory categorization, categories, manufacturers, models	
+	 inventory locations
+	 
+	 ticket configuration
+	 ticket groups
+	 ticket categories
+	 outbound domains			https://www.dropbox.com/s/3jbgf231771phug/Screenshot%202018-03-20%2017.31.48.png?dl=0
+	 							https://www.dropbox.com/s/60cff2u0dsptypr/Screenshot%202018-03-20%2017.32.52.png?dl=0
+	 							MUST BE NOT IN USE ON OTHER INSTANCES
+	 inbound email accounts		table DEPENDS ON outbound domains
+	 							https://www.dropbox.com/s/ahhlgk2tpv823gp/Screenshot%202018-03-20%2017.37.43.png?dl=0
+	 							https://www.dropbox.com/s/de0so4dxc8a4fk5/Screenshot%202018-03-20%2017.49.20.png?dl=0
+	 							
+	 tickets
+	  
+	
+	 voip providers
+	 rate centers
+	 
+	 set customer portal password strength to minimum
+	 billing parameters
+	 
+	 accounts, 
+	 	account addresses, 
+	 	account contacts, 
+	 	account notes, 
+	 	account 
+	 	tickets, 
+	 	workorders, 
+	 	account billing parameters
+	 	account services				From Wispmon
+	 	account payment methods
+	 	account dids (if any)
+	 
+	 	inventory			Iterative from backup
+	 	
+	 	Dids
+	 	
+	 	Network IP assignments (hand tweak)
+	 	Monitoring Templates, OIDS, etc
+	 	
+	 	email setting, email messages, etc
+	 	
+	 	account contracts (if any) https://example.sonar.software/api/v1/:entity/:id/files
+	 
+	 tickets  - needs work
+	 notes
+	 
+	 correct all multiple quantities
+	 split   all multiple accounts
+	 update  all service addresses	
+	 check all tax exemptions
+	 set billing parameters for business accounts
+	 check for printed invoices, invoicing vendor
+	 setup mailxstream
+	 set account types for business
+	 set service groups, etc
+	 update next bill date			From wispmon
+	 set initial balances			From Wispmon
+	 
+	 create legacy invoices and upload to tickets for each account
+	 netflow endpoints
+	 
+	 
