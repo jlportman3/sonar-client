@@ -2,6 +2,9 @@
 requests>=2.25.0
 beautifulsoup4>=4.9.0
 
+# Optional dependencies for environment variable support
+# python-dotenv>=0.19.0  # Uncomment if using .env files
+
 # Optional development dependencies (install with pip install -e .[dev])
 # pytest>=6.0
 # pytest-cov>=2.0

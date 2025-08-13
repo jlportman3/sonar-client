@@ -15,16 +15,67 @@ A Python client library for the Sonar network management system. This package pr
 
 ## Installation
 
+### Recommended: Using Virtual Environment
+
+It's strongly recommended to use a virtual environment to avoid conflicts with other Python packages:
+
+```bash
+# Create a virtual environment
+python3 -m venv sonar-env
+
+# Activate the virtual environment
+# On Linux/macOS:
+source sonar-env/bin/activate
+# On Windows:
+# sonar-env\Scripts\activate
+
+# Install the package
+pip install git+https://github.com/jlportman3/sonar-client.git
+
+# Optional: Install with environment variable support
+pip install "git+https://github.com/jlportman3/sonar-client.git[env]"
+```
+
 ### From GitHub (SSH)
 ```bash
-pip install git+ssh://git@github.com/jlportman3/SonarAPI.git#subdirectory=sonar_client
+# With virtual environment activated
+pip install git+ssh://git@github.com/jlportman3/sonar-client.git
+
+# Optional: Install with environment variable support
+pip install "git+ssh://git@github.com/jlportman3/sonar-client.git[env]"
 ```
 
 ### Development Installation
 ```bash
-git clone git@github.com:jlportman3/SonarAPI.git
-cd SonarAPI/sonar_client
+# Create and activate virtual environment
+python3 -m venv sonar-dev-env
+source sonar-dev-env/bin/activate  # Linux/macOS
+# sonar-dev-env\Scripts\activate  # Windows
+
+# Clone and install in development mode
+git clone git@github.com:jlportman3/sonar-client.git
+cd sonar-client
 pip install -e .
+```
+
+### Using Environment Variables
+
+Create a `.env` file for your credentials (copy from `.env.example`):
+
+```bash
+# Copy the example file
+cp .env.example .env
+
+# Edit with your credentials
+nano .env  # or your preferred editor
+```
+
+Example `.env` file:
+```bash
+SONAR_USERNAME=your_sonar_username
+SONAR_PASSWORD=your_sonar_password
+SONAR_PROTOCOL=https
+SONAR_HOST=your_instance.sonar.software
 ```
 
 ## Quick Start
@@ -32,14 +83,27 @@ pip install -e .
 ### Basic Usage
 
 ```python
+import os
 import sonar_client as Sonar
 
-# Setup connection
+# Option 1: Direct setup
 Sonar.setup(
     username="your_username",
     password="your_password", 
     protocol="https",
     host="your-sonar-instance.com"
+)
+
+# Option 2: Using environment variables (recommended)
+# First install python-dotenv: pip install python-dotenv
+from dotenv import load_dotenv
+load_dotenv()  # Load .env file
+
+Sonar.setup(
+    username=os.getenv('SONAR_USERNAME'),
+    password=os.getenv('SONAR_PASSWORD'),
+    protocol=os.getenv('SONAR_PROTOCOL'),
+    host=os.getenv('SONAR_HOST')
 )
 
 # Load customer data

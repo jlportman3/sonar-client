@@ -17,19 +17,14 @@ __author__ = "SonarAPI Team"
 __email__ = "support@example.com"
 __license__ = "MIT"
 
+# Import the core module to access functions and variables dynamically
+from . import core
+
 # Import all functions from core module to maintain backward compatibility
 from .core import (
     # Core setup and configuration
     setup,
     version,
-    
-    # Global variables (for backward compatibility)
-    username,
-    password,
-    protocol,
-    host,
-    VERSION,
-    DEBUG_LEVEL,
     
     # Session management
     _session,
@@ -83,6 +78,13 @@ from .core import (
     lookup_ip,
     get_inventory_models_by_name,
 )
+
+# Create module-level getters for global variables that reference core module
+def __getattr__(name):
+    """Dynamic attribute access to core module variables"""
+    if name in ['username', 'password', 'protocol', 'host', 'VERSION', 'DEBUG_LEVEL']:
+        return getattr(core, name)
+    raise AttributeError(f"module '{__name__}' has no attribute '{name}'")
 
 # Make all functions available at package level for backward compatibility
 __all__ = [
